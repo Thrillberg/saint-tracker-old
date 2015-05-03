@@ -1,0 +1,18 @@
+<%= render 'shared/content_title', title: "New Saint" %>
+<%= render 'shared/errors', obj: @saint %>
+
+<div class='well'>
+  <%= form_for @saint do |f| %>
+    <div class='control-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :main_attribute %>
+      <small><quiet>Please enter the main attribute of the saint. For example, St. Bartholomew is associated with a knife and his flayed skin.</quiet></small>
+      <br/>
+      <%= f.text_field :is_saint_of %>
+    </div>
+    <%= f.submit "Create Saint", class: "btn btn-success" %>
+  <% end %>
+</div>

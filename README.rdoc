@@ -1,0 +1,3 @@
+Digital Humanities - Italian Renaissance Saints in Painting
+
+This app will allow users to add and view works of art (preferably from the Italian Renaissance) and see where, when, and by whom various saints were depicted.

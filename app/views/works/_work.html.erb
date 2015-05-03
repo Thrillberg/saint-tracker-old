@@ -1,0 +1,20 @@
+<div class='span8 well'>
+  <%= render work.saints %>
+  <h4><%= link_to work.title, work_path(work) %></h4>
+
+  <p>Painted in <%= work.date %> by <%= work.artist.name %>.</p>
+
+  <p>
+    <%= link_to image_tag(work.image), work.image %>
+  </p>
+
+  <p>
+    <span class='quiet'>posted by</span> <%= link_to work.user.username, user_path(work.user) %>
+    <small>on <%= display_date(work.created_at) %></small>
+  </p>
+  <small>
+  <span>
+    <%= link_to("#{work.comments.size} comments", work_path(work)) %>
+  </span>
+  </small>
+</div>

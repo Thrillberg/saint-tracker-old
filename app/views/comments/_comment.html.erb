@@ -1,0 +1,15 @@
+<% show_work ||= false %>
+
+
+<div class='row'>
+
+  <div class='well span8'>
+    <em><%= comment.body %></em>
+    <% if show_work %>
+      on <%= link_to comment.work.title, work_path(comment.work) %>
+    <% end %>
+    <br/>
+    <span class='quiet'>by</span> <%= link_to comment.user.username, user_path(comment.user) %>
+      <small>at <%= display_date(comment.created_at) %></small>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<% if logged_in? && (current_user.admin? || current_user == @work.user) %>
+<p class='pull-right'>
+  [<%= link_to 'edit this entry', edit_work_path(@work) %>]
+</p>
+<% end %>
+
+<%= render @work.saints %>
+
+<p class='lead'>
+  <%= @work.title %>
+  <hr/>
+</p>
+
+<p>Painted in <%= @work.date %> by <%= @work.artist.name %> in <%= @work.city %>.</p>
+  <p>
+    <%= link_to image_tag(@work.image), @work.image %>
+  </p>
+<hr/>
+
+<%= form_for [@work, @comment] do |f| %>
+  <%= render 'shared/errors', obj: @comment %>
+  <div class='control-group'>
+    <%= f.label :body, "Leave a comment" %>
+    <%= f.text_area :body, rows: 3, class: 'span4' %>
+    <br/>
+  </div>
+  <%= f.submit "Create Comment", class: "btn btn-success" %>
+  <% end %>
+
+
+<h5>Comments:</h5>
+
+<% @work.reload.comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>

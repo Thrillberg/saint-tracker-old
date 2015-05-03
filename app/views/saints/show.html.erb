@@ -1,0 +1,7 @@
+<% header = link_to('All Works', works_path) + " &raquo; #{@saint.name}".html_safe %>
+
+<%= render 'shared/content_title', title: header %>
+
+<% @saint.works.each do |work| %>
+  <%= render 'works/work', work: work %>
+<% end %>

@@ -1,0 +1,47 @@
+<%= render 'shared/errors', obj: @work %>
+
+<div class='well'>
+  <%= form_for @work do |f| %>
+    <div class='control-group'>
+      <%= f.label :title %>
+      <small><quiet>Please enter the title of the work.</quiet></small>
+      <br/>
+      <%= f.text_field :title %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :date %>
+      <small><quiet>Please enter the date the work was created.</quiet></small>
+      <br/>
+      <%= f.text_field :date %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :city %>
+      <small><quiet>Please enter the ecity in which the work was created.</quiet></small>
+      <br/>
+      <%= f.text_field :city %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :image_URL %>
+      <small><quiet>Please enter the exact URL below, preferably a high resolution image.</quiet></small>
+      <br/>
+      <%= f.text_field :image %>
+    </div>
+
+    <div class='control-group'>
+      <%= f.label "Saints" %>
+      <small><quiet>Which saints appear in the work? If the saint isn't here, please submit a new saint below.</quiet></small>
+      <br/>
+      <%= f.collection_check_boxes :saint_ids, Saint.all, :id, :name do |cb| %>
+        <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+      <% end %>
+    </div>
+      <p>
+      <%= link_to(new_saint_path) do %>
+          
+          <button type="button" class="btn btn-default"><i class='icon-plus'></i> New Saint</button>
+        <% end %>
+      </p>
+      <br/>
+      <%= f.submit(@work.new_record? ? 'Add Work of Art' : 'Update Work of Art', class: 'btn btn-success') %>
+    <% end %>
+</div>

@@ -1,0 +1,5 @@
+<%= render 'shared/content_title', title: 'All Works of Art' %>
+
+<% @works.each do |work| %>
+  <%= render 'work', work: work %>
+<% end %>

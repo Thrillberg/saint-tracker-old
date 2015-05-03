@@ -1,0 +1,43 @@
+Digital Humanities
+
+ideas: 
+  1) Italian Renaissance paintings
+  2) Rothkometer
+  3) Literature relationships
+
+db structure:
+  1) Italian Renaisannce paintings
+    tables:
+      users
+      comments
+      works
+      artists
+      saints
+        work_saints
+        artist_saints
+
+    relationships:
+      users have many comments - 1:M
+      comment belongs to one user - 1:1
+
+      work belongs to one artist - 1:M
+      artist has many works - 1:M
+
+      user belongs to many works - 1:M
+
+      works have many saints - M:M
+      artists have many saints - M:M
+
+      work_saints belongs to many works - M:M
+      work_saints belongs to many artists - M:M
+      artist_saints belongs to many artists - M:M
+      artist_saints belongs to many works - M:M
+
+    columns:
+      users - username, password_digest, role, slug
+      comments - body, user_id, work_id
+      works - title, date, artist_id, saint_id, city, user_id, slug
+      artists - name, works, dates, slug
+      saints - name, attribute, slug
+        work_saints - work_id, saint_id
+        artist_saints - artist_id, saint_id
