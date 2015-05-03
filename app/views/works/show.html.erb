@@ -11,7 +11,8 @@
   <hr/>
 </p>
 
-<p>Painted in <%= @work.date %> by <%= @work.artist.name %> in <%= @work.city %>.</p>
+<% artist = Artist.find_by_id(@work.artist_id) %>
+<p>Painted in <%= @work.date %> by <%= artist.name %> in <%= @work.city %>.</p>
   <p>
     <%= link_to image_tag(@work.image), @work.image %>
   </p>

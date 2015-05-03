@@ -15,7 +15,7 @@ class SaintsController < ApplicationController
   end
 
   def show
-    @saint = Saint.find_by(params[:id])
+    @saint = Saint.find_by_id(params[:id])
   end
 
   private

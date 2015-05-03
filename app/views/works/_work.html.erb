@@ -2,10 +2,11 @@
   <%= render work.saints %>
   <h4><%= link_to work.title, work_path(work) %></h4>
 
-  <p>Painted in <%= work.date %> by <%= work.artist.name %>.</p>
+  <% artist = Artist.find_by_id(work.artist_id) %>
+  <p>Painted in <%= work.date %> by <%= artist.name %>.</p>
 
   <p>
-    <%= link_to image_tag(work.image), work.image %>
+    <%= link_to image_tag(work.image, options={size: "400"}), work.image %>
   </p>
 
   <p>

@@ -1,0 +1,18 @@
+<%= render 'shared/content_title', title: "New Artist" %>
+<%= render 'shared/errors', obj: @artist %>
+
+<div class='well'>
+  <%= form_for @artist do |f| %>
+    <div class='control-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class='control-group'>
+      <%= f.label :dates %>
+      <small><quiet>Please enter the dates that the artist lived.</quiet></small>
+      <br/>
+      <%= f.text_field :dates %>
+    </div>
+    <%= f.submit "Create Artist", class: "btn btn-success" %>
+  <% end %>
+</div>
