@@ -14,7 +14,6 @@ class WorksController < ApplicationController
 
   def new
     @work = Work.new
-    @artist_options = Artist.all.map{|u| [ u.name, u.id ] }
   end
 
   def create
@@ -40,10 +39,16 @@ class WorksController < ApplicationController
     end
   end
 
+  def destroy
+    Work.find(params[:id]).destroy
+    flash[:success] = "Your submission has been deleted."
+    redirect_to root_path
+  end
+
   private
 
   def work_params
-    params.require(:work).permit(:title, :date, :city, :image, saint_ids: [])
+    params.require(:work).permit(:title, :date, :city, :image, :artist_id, saint_ids: [])
   end
 
   def set_work

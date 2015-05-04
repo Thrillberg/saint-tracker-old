@@ -9,4 +9,6 @@ class Work < ActiveRecord::Base
   validates :date, presence: true
   validates :city, presence: true
   validates :image, presence: true, uniqueness: true
+  validates_format_of :image, :with => %r{\.(png|jpg|jpeg)$}i, :message => "must be an image.", multiline: true
+
 end

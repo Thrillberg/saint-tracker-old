@@ -5,8 +5,4 @@ class Artist < ActiveRecord::Base
 
   validates :name, presence: :true
 
-  def name_for_dropdown
-    "#{name}"
-  end
-
 end

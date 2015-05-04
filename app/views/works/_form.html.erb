@@ -20,31 +20,10 @@
       <br/>
       <%= f.text_field :city %>
     </div>
-
-<div class='btn-group nav_item'>
-  <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-    Artists <span class='caret'></span>
-   <% end %>
-   <ul class='dropdown-menu'>
-    <% Artist.all.each do |artist| %>
-      <li>
-        <%= collection_select(:work, :artist_id, Artist.all, :id, :name_for_dropdown, prompt: true) %>
-      </li>
-    <% end %>
-
-    <% if logged_in? && current_user.admin? %>
-    <li class='divider'></li>
-    <li>
-        <%= link_to(new_artist_path) do %>
-          <i class='icon-plus'></i>
-          New Artist
-        <% end %>
-    <% end %>
-    </li>
-   </ul> 
-</div>
-
-
+    <div class='control-group'>
+    <%= f.label :artist %>
+    <%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => true %>
+    </div>
     <div class='control-group'>
       <%= f.label :image_URL %>
       <small><quiet>Please enter the exact URL below, preferably a high resolution image.</quiet></small>

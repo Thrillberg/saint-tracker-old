@@ -8,7 +8,7 @@ class SaintsController < ApplicationController
 
     if @saint.save
       flash[:notice] = "Your saint has been added."
-      redirect_to root_path
+      redirect_to new_work_path
     else
       render :new
     end

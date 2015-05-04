@@ -1,7 +1,9 @@
 <% if logged_in? && (current_user.admin? || current_user == @work.user) %>
-<p class='pull-right'>
-  [<%= link_to 'edit this entry', edit_work_path(@work) %>]
-</p>
+  <p class='pull-right'>
+    [<%= link_to 'edit this entry', edit_work_path(@work) %>]
+  <br/>
+    [<%= link_to 'delete this entry', @work, method: "delete", data: { confirm: "Are you sure?" } %>]
+  </p>
 <% end %>
 
 <%= render @work.saints %>
