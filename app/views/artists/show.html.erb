@@ -1,6 +1,6 @@
 <% header = link_to('All Works', works_path) + " &raquo; #{@artist.name}".html_safe %>
 
-<%= render 'shared/content_title', title: header %>
+<%= render 'shared/content_title', title: header + " (#{@artist.dates})" %>
 
 <% @artist.reload.works.each do |work| %>
   <%= render 'works/work', work: work %>

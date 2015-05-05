@@ -4,37 +4,43 @@
   <%= form_for @work do |f| %>
     <div class='control-group'>
       <%= f.label :title %>
-      <small><quiet>Please enter the title of the work.</quiet></small>
-      <br/>
+      <div class='quiet'><small>Please enter the title of the work.</small></div>
       <%= f.text_field :title %>
     </div>
     <div class='control-group'>
       <%= f.label :date %>
-      <small><quiet>Please enter the date the work was created.</quiet></small>
-      <br/>
+      <div class='quiet'><small>Please enter the date the work was created.</small></div>
       <%= f.text_field :date %>
     </div>
     <div class='control-group'>
       <%= f.label :city %>
-      <small><quiet>Please enter the city in which the work was created.</quiet></small>
-      <br/>
+      <small><div class='quiet'>Please enter the city in which the work was created.</div></small>
+
       <%= f.text_field :city %>
     </div>
     <div class='control-group'>
-    <%= f.label :artist %>
-    <%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => true %>
+      <%= f.label :artist %>
+      <%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => true %>
+      <br/>
+      <p>
+      <small><div class='quiet'>If the artist isn't here, please submit a new artist.</div></small>
+      <%= link_to(new_artist_path) do %>
+          <button type="button" class="btn btn-default"><i class='icon-plus'></i> New Artist</button>
+        <% end %>
+      </p>
     </div>
+
     <div class='control-group'>
       <%= f.label :image_URL %>
-      <small><quiet>Please enter the exact URL below, preferably a high resolution image.</quiet></small>
-      <br/>
+      <small><div class='quiet'>Please enter the exact URL below, preferably a high resolution image.</div></small>
+
       <%= f.text_field :image %>
     </div>
 
     <div class='control-group'>
       <%= f.label "Saints" %>
-      <small><quiet>Which saints appear in the work? If the saint isn't here, please submit a new saint below.</quiet></small>
-      <br/>
+      <small><div class='quiet'>Which saints appear in the work? If the saint isn't here, please submit a new saint below.</div></small>
+
       <%= f.collection_check_boxes :saint_ids, Saint.all, :id, :name do |cb| %>
         <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
       <% end %>

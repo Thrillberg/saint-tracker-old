@@ -1,3 +1,6 @@
+
+
+
 <% if logged_in? && (current_user.admin? || current_user == @work.user) %>
   <p class='pull-right'>
     [<%= link_to 'edit this entry', edit_work_path(@work) %>]
@@ -13,8 +16,37 @@
   <hr/>
 </p>
 
-<% artist = Artist.find_by_id(@work.artist_id) %>
-<p>Painted in <%= @work.date %> by <%= artist.name %> in <%= @work.city %>.</p>
+<p>Painted in <%= @work.date %> by <%= @work.artist.name %> in <%= @work.city %>.</p>
+
+  <p>
+  Latitude: <%= @work.latitude %>
+  </p>
+  <p>
+  Longitude: <%= @work.longitude %>
+  </p>
+
+  <p>
+  <script type='text/javascript'>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      alert(<%= raw @hash %>)
+    markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    });
+  </script>
+  <div style='width: 80%;' >
+    <div id="map"></div>
+  </div>
+</p>
+
+
+  <p>
+  <div style='width: 800px;'>
+    <div id="map" style='width: 800px; height: 400px;'></div>
+  </div>
+  </p>
+
   <p>
     <%= link_to image_tag(@work.image), @work.image %>
   </p>

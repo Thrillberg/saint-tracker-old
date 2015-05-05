@@ -11,4 +11,22 @@ class Work < ActiveRecord::Base
   validates :image, presence: true, uniqueness: true
   validates_format_of :image, :with => %r{\.(png|jpg|jpeg)$}i, :message => "must be an image.", multiline: true
 
+  attr_accessor :artist_id
+  before_save :create_artist
+
+  accepts_nested_attributes_for :artist, :update_only => true
+
+  geocoded_by :city
+  after_validation :geocode
+
+  def create_artist
+    self.artist = Artist.create!(name: artist_id) if artist_id.present?
+  end
+
+  private  
+
+  def artist_params
+    params.require(:artist_id).permit(:name, :dates)
+  end
+
 end

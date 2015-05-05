@@ -5,6 +5,16 @@ class WorksController < ApplicationController
 
   def index
     @works = Work.all.reverse
+    @hash = Gmaps4rails.build_markers(@works) do |work, marker|
+      marker.lat work.latitude
+      marker.lng work.longitude
+      marker.infowindow work.title
+      marker.picture({
+        "url" => "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+        "width" => 32,
+        "height" => 32})
+      marker.json({ title: work.title })
+    end
   end
 
   def show

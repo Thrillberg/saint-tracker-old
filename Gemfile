@@ -10,10 +10,11 @@ gem 'bootstrap-sass', '~> 2.3.2.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'rmagick', '~> 2.15.0'
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
 
 group :doc do
   gem 'sdoc', require: false
