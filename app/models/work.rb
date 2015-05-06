@@ -12,6 +12,7 @@ class Work < ActiveRecord::Base
   validates_format_of :image, :with => %r{\.(png|jpg|jpeg)$}i, :message => "must be an image.", multiline: true
 
   attr_accessor :artist_id
+  attr_accessor :hash
   before_save :create_artist
 
   accepts_nested_attributes_for :artist, :update_only => true

@@ -10,10 +10,9 @@ class WorksController < ApplicationController
       marker.lng work.longitude
       marker.infowindow work.title
       marker.picture({
-        "url" => "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
-        "width" => 32,
-        "height" => 32})
-      marker.json({ title: work.title })
+        "url" => "http://www.hoyer-group.com/fileadmin/templates/hoyer_group/skeleton/img/gmaps-marker.png",
+        "width" => 26,
+        "height" => 42})
     end
   end
 
@@ -29,6 +28,7 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user = current_user
+          binding.pry
 
     if @work.save
       flash[:notice] = "Your submission was added!"
