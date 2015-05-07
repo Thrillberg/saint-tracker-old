@@ -16,7 +16,6 @@ class Work < ActiveRecord::Base
   sluggable_column :title
 
   attr_accessor :new_artist
-  attr_accessor :hash
   before_save :create_artist
 
   accepts_nested_attributes_for :artist, :update_only => true
@@ -26,12 +25,6 @@ class Work < ActiveRecord::Base
 
   def create_artist
     self.artist = Artist.create!(name: new_artist) if new_artist.present?
-  end
-
-  private  
-
-  def artist_params
-    params.require(:artist_id).permit(:name, :dates)
   end
 
 end

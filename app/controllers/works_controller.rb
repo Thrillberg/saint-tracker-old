@@ -9,7 +9,6 @@ class WorksController < ApplicationController
       marker.lat work.latitude
       marker.lng work.longitude
       marker.infowindow work.title
-      marker.json({ title: work.title })
     end
   end
 
@@ -42,16 +41,12 @@ class WorksController < ApplicationController
   def edit; end
 
   def update
-    
-    @work.update(work_params)
-    binding.pry
-
-    #if @work.update(work_params)
-    #  flash[:notice] = "This work of art was updated."
-    #  redirect_to work_path(@work)
-    #else
-    #  render :edit
-    #end
+    if @work.update(work_params)
+      flash[:notice] = "This work of art was updated."
+      redirect_to work_path(@work)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -72,6 +67,10 @@ class WorksController < ApplicationController
 
   def require_creator
     access_denied unless logged_in? && (current_user == @work.user || current_user.admin?)
+  end
+
+    def artist_params
+    params.require(:artist_id).permit(:name, :dates)
   end
 
 end

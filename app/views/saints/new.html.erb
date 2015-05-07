@@ -8,9 +8,8 @@
       <%= f.text_field :name %>
     </div>
     <div class='control-group'>
-      <%= f.label :main_attribute %>
-      <small><quiet>Please enter the main attribute of the saint. For example, St. Bartholomew is associated with a knife and his flayed skin.</quiet></small>
-      <br/>
+      <%= f.label :attributes %>
+      <small><div class='quiet'>Please enter the main attribute of the saint. For example, St. Bartholomew is associated with a knife and his flayed skin.</div></small>
       <%= f.text_field :is_saint_of %>
     </div>
     <%= f.submit "Create Saint", class: "btn btn-success" %>
