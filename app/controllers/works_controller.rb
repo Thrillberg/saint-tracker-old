@@ -9,16 +9,18 @@ class WorksController < ApplicationController
       marker.lat work.latitude
       marker.lng work.longitude
       marker.infowindow work.title
-      marker.picture({
-        "url" => "http://www.hoyer-group.com/fileadmin/templates/hoyer_group/skeleton/img/gmaps-marker.png",
-        "width" => 26,
-        "height" => 42})
+      marker.json({ title: work.title })
     end
   end
 
   def show
-    @work = Work.find_by_id(params[:id])
+    @work = Work.find_by(slug: params[:id])
     @comment = Comment.new
+    @hash = Gmaps4rails.build_markers(@work) do |work, marker|
+      marker.lat work.latitude
+      marker.lng work.longitude
+      marker.infowindow work.title
+    end
   end
 
   def new
@@ -28,7 +30,6 @@ class WorksController < ApplicationController
   def create
     @work = Work.new(work_params)
     @work.user = current_user
-          binding.pry
 
     if @work.save
       flash[:notice] = "Your submission was added!"
@@ -41,16 +42,20 @@ class WorksController < ApplicationController
   def edit; end
 
   def update
-    if @work.update(work_params)
-      flash[:notice] = "This work of art was updated."
-      redirect_to work_path(@work)
-    else
-      render :edit
-    end
+    
+    @work.update(work_params)
+    binding.pry
+
+    #if @work.update(work_params)
+    #  flash[:notice] = "This work of art was updated."
+    #  redirect_to work_path(@work)
+    #else
+    #  render :edit
+    #end
   end
 
   def destroy
-    Work.find(params[:id]).destroy
+    Work.find_by(slug: params[:id]).destroy
     flash[:success] = "Your submission has been deleted."
     redirect_to root_path
   end
@@ -62,7 +67,7 @@ class WorksController < ApplicationController
   end
 
   def set_work
-    @work = Work.find_by_id(params[:id])
+    @work = Work.find_by(slug: params[:id])
   end
 
   def require_creator

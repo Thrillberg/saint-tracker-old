@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504153119) do
+ActiveRecord::Schema.define(version: 20150507130853) do
 
   create_table "artist_saints", force: true do |t|
     t.integer "artist_id"
@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20150504153119) do
     t.string   "image"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "address"
   end
 
 end

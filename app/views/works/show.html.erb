@@ -16,30 +16,12 @@
   <hr/>
 </p>
 
-<p>Painted in <%= @work.date %> by <%= @work.artist.name %> in <%= @work.city %>.</p>
+<p>Painted in <%= @work.date %> by <%= link_to @work.artist.name, artist_path(@work.artist) %> in <%= @work.city %>.</p>
 
-  <p>
-  Latitude: <%= @work.latitude %>
-  </p>
-  <p>
-  Longitude: <%= @work.longitude %>
-  </p>
+  
 
-  <p>
-
-
-  <div id="map" style='width: 400px; height: 600px;'></div>
-
-  <script type='text/javascript'>
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%= raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    });
-  </script>
-</p>
-
+<div class = "row">
+  <div class='span5 well'>
   <p>
     <%= link_to image_tag(@work.image), @work.image %>
   </p>
@@ -54,10 +36,29 @@
   </div>
   <%= f.submit "Create Comment", class: "btn btn-success" %>
   <% end %>
+  </div>
 
+  <div class='span6 well'>
+  <p>
 
+    <div id="map" style='width: 400px; height: 600px;'></div>
+
+    <script type='text/javascript'>
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(4);
+      });
+    </script>
+  </p>
+  </div>
+
+<div class="pull-left control-group">
 <h5>Comments:</h5>
 
 <% @work.reload.comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
 <% end %>
+</div>

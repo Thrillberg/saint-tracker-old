@@ -1,7 +1,32 @@
 <% header = link_to('All Works', works_path) + " &raquo; #{@saint.name}".html_safe %>
 
 <%= render 'shared/content_title', title: header %>
+<h4><%= @saint.name %> is associated with the following attributes: <%= @saint.is_saint_of %>.</h4>
+<br/>
+
+
+<div class = "row">
+  <div class='span5 well'>
 
 <% @saint.works.each do |work| %>
   <%= render 'works/work', work: work %>
 <% end %>
+</div>
+
+<div class='span6 well'>
+<p>
+  <div id="map" style='width: 450px; height: 400px;'></div>
+
+  <script type='text/javascript'>
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: { }, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers(<%= raw @hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(4);
+    });
+  </script>
+</p>
+</div>
+
+

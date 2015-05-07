@@ -15,6 +15,15 @@
         
       </li>
     <% end %>
+    <% if logged_in? %>
+    <li class='divider'></li>
+    <li>
+        <%= link_to(new_saint_path) do %>
+          <i class='icon-plus'></i>
+          New Saint
+        <% end %>
+    <% end %>
+    </li>
    </ul> 
 </div>
 
@@ -29,6 +38,15 @@
         
       </li>
     <% end %>
+    <% if logged_in? %>
+    <li class='divider'></li>
+    <li>
+        <%= link_to(new_artist_path) do %>
+          <i class='icon-plus'></i>
+          New Artist
+        <% end %>
+    <% end %>
+    </li>
    </ul> 
 </div>
 

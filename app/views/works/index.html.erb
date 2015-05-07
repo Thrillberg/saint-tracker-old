@@ -1,18 +1,27 @@
-<%= render 'shared/content_title', title: 'All Works of Art' %>
 
-  <p>
-  <div id="map" style='width: 300px; height: 300px;'></div>
 
-  <script type='text/javascript'>
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: { maxZoom: 3 }, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers(<%= raw @hash.to_json %>);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    });
-  </script>
-</p>
+<div class = "row">
+  <div class='span5 well'>
+  <%= render 'shared/content_title', title: 'All Works of Art' %>
+  <% @works.each do |work| %>
+    <%= render 'work', work: work %>
+  <% end %>
+  </div>
 
-<% @works.each do |work| %>
-  <%= render 'work', work: work %>
-<% end %>
+  <div class='span6 well'>
+    <%= render 'shared/content_title', title: 'Map of All Works of Art' %>
+    <p>
+    <div id="map" style='width: 450px; height: 400px;'></div>
+
+    <script type='text/javascript'>
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: { }, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(4);
+      });
+    </script>
+    </p>
+  </div>
+</div>

@@ -15,7 +15,13 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find_by_id(params[:id])
+    @artist = Artist.find_by(slug: params[:id])
+    @works = @artist.works.all.reverse
+    @hash = Gmaps4rails.build_markers(@works) do |work, marker|
+      marker.lat work.latitude
+      marker.lng work.longitude
+      marker.infowindow work.title
+    end
   end
 
   private

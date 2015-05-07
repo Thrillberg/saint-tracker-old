@@ -18,17 +18,6 @@
 
       <%= f.text_field :city %>
     </div>
-    <div class='control-group'>
-      <%= f.label :artist %>
-      <%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => true %>
-      <br/>
-      <p>
-      <small><div class='quiet'>If the artist isn't here, please submit a new artist.</div></small>
-      <%= link_to(new_artist_path) do %>
-          <button type="button" class="btn btn-default"><i class='icon-plus'></i> New Artist</button>
-        <% end %>
-      </p>
-    </div>
 
     <div class='control-group'>
       <%= f.label :image_URL %>
@@ -36,6 +25,21 @@
 
       <%= f.text_field :image %>
     </div>
+
+    <div class='control-group'>
+      <%= f.label :artist %>
+      <small><div class='quiet'>Who is the artist? If the artist isn't here, please submit a new artist below.</div></small>
+      <%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => true %>
+      <br/>
+      <p>
+      
+      <%= link_to(new_artist_path) do %>
+          <button type="button" class="btn btn-default"><i class='icon-plus'></i> New Artist</button>
+        <% end %>
+      </p>
+    </div>
+
+    
 
     <div class='control-group'>
       <%= f.label "Saints" %>
