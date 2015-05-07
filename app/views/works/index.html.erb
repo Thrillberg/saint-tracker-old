@@ -34,7 +34,9 @@ Please submit new works of art to flesh out our collection!
       markers = handler.addMarkers(<%= raw @hash.to_json %>);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
-      handler.getMap().setZoom(4);
+      var map = handler.getMap();
+      map.setZoom(5);
+      map.setCenter(new google.maps.LatLng(43, 11));
       });
     </script>
     </p>
