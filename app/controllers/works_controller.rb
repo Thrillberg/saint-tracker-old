@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   before_action :require_creator, only: [:edit, :update]
 
   def index
-    @works = Work.all.reverse
+    @works = Work.all.shuffle
     @hash = Gmaps4rails.build_markers(@works) do |work, marker|
       marker.lat work.latitude
       marker.lng work.longitude

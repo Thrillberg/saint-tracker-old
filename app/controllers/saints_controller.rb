@@ -16,7 +16,7 @@ class SaintsController < ApplicationController
 
   def show
     @saint = Saint.find_by(slug: params[:id])
-    @works = @saint.works.all.reverse
+    @works = @saint.works.all
     @hash = Gmaps4rails.build_markers(@works) do |work, marker|
       marker.lat work.latitude
       marker.lng work.longitude
