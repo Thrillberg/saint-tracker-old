@@ -6,13 +6,13 @@
 
 <div class='btn-group nav_item'>
   <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-    Saints <span class='caret'></span>
+    <i class="fa fa-university"></i> Saints <span class='caret'></span>
    <% end %>
    <ul class='dropdown-menu'>
-    <% Saint.all.each do |saint| %>
+    <% @saints.each do |saint| %>
       <li>
         <%= link_to saint.name, saint_path(saint) %>
-        
+
       </li>
     <% end %>
     <% if logged_in? %>
@@ -24,18 +24,18 @@
         <% end %>
     <% end %>
     </li>
-   </ul> 
+   </ul>
 </div>
 
 <div class='btn-group nav_item'>
   <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-    Artists <span class='caret'></span>
+    <i class="fa fa-paint-brush"></i> Artists <span class='caret'></span>
    <% end %>
    <ul class='dropdown-menu'>
-    <% Artist.all.each do |artist| %>
+    <% @artists.each do |artist| %>
       <li>
         <%= link_to artist.name, artist_path(artist) %>
-        
+
       </li>
     <% end %>
     <% if logged_in? %>
@@ -47,7 +47,7 @@
         <% end %>
     <% end %>
     </li>
-   </ul> 
+   </ul>
 </div>
 
 <% if logged_in? %>
@@ -82,7 +82,7 @@
     <%= link_to 'Register', register_path, class: 'btn btn-success btn-small' %>
     </div>
     <div class='nav_item'>
-    <%= link_to 'Log in', login_path, class: 'btn btn-small' %>
+    <%= link_to ' Log in', login_path, class: 'fa fa-sign-in btn btn-small' %>
     </div>
 
   <% end %>

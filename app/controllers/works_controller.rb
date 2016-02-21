@@ -5,6 +5,8 @@ class WorksController < ApplicationController
 
   def index
     @works = Work.all.shuffle
+    @saints = Saint.all
+    @artists = Artist.all
     @hash = Gmaps4rails.build_markers(@works) do |work, marker|
       marker.lat work.latitude
       marker.lng work.longitude

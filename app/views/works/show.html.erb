@@ -18,7 +18,7 @@
 
 <p>Painted in <%= @work.date %> by <%= link_to @work.artist.name, artist_path(@work.artist) %> in <%= @work.city %>.</p>
 
-  
+
 
 <div class = "row">
   <div class='span5 well'>
@@ -41,7 +41,7 @@
   <div class='span6 well'>
   <p>
 
-    <div id="map" style='width: 450px; height: 400px;'></div>
+    <div id="map"></div>
 
     <script type='text/javascript'>
       handler = Gmaps.build('Google');
